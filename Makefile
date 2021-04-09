@@ -1,19 +1,19 @@
 # ARMANGAU Etienne makefile cpp
 
-# pour générer l’exécutable, faites la commande sudo make dans le répertoire de votre projet/makefile.
+# To generate the exec file, just do sudo make on your prompt
 
-# VARIABLES A MODIFIER SELON VOTRE ENVIRONEMENT ET VOS GOUTS
+# VARIABLES TO MODIFY
 
-# répertoire des fichiers sources (*.cpp)
+# sources folder (*.cpp)
 SRC := sources
-# répertoire des fichiers headers (*.h)
+# headers folder (*.h)
 INC := include
-# nom du fichier main.cpp (à modifier absolument)
+#  main.cpp (your main cpp source code)
 MAIN := main.cpp
-# nom de l’exécutable qui va être généré (à modifier)
+# name of the generated executable
 EXEC := prog
 
-# A NE PAS TOUCHER
+# DO NOT TOUCH
 # liste des fichiers sources y compris le main.cpp qui peut être dans les sources ou dans
 # le répertoire courant du projet
 ifneq ("$(wildcard $(MAIN))","")
