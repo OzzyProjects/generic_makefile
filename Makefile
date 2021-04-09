@@ -37,7 +37,7 @@ LDLIBS   := -lcurl
 $(EXEC) : $(objects)
 	$(CXX) $(LDFLAGS) $^ $(LDLIBS) -o $@
 	$(RM) $(objects) $(deps)
-	 @echo "Compilation réussie !"
+	 @echo "Compilation done !"
 
 # compilation des fichiers sources
 $(SRC)/%.o: $(SRC)/%.cpp
