@@ -1,5 +1,8 @@
 # ARMANGAU Etienne makefile cpp
 
+# Make sure you have lcurl installed
+# if not sudo apt-get install libcurl4-openssl-dev
+
 # To generate the exec file, just do sudo make on your prompt
 
 # VARIABLES TO MODIFY
