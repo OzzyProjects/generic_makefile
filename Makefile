@@ -21,6 +21,7 @@ ifneq ("$(wildcard $(MAIN))","")
 else
 	sources := $(wildcard $(SRC)/*.cpp)
 endif
+
 # liste des fichiers objets
 objects := $(sources:.cpp=.o)
 # liste des fichier de dépendance
@@ -30,8 +31,18 @@ CXX := g++
 CPPFLAGS := -I $(INC) -MMD -MP
 # options du compilateur
 CXXFLAGS := -std=c++17 -Wall -pedantic
-LDFLAGS  := -L /usr/lib/x86_64-linux-gnu
-LDLIBS   := -lcurl
+
+# OS name
+UNAME := $(shell uname -s)
+
+ifeq ($(UNAME), Linux)
+	LDFLAGS  := -L/usr/lib/x86_64-linux-gnu
+	LDLIBS   := -lcurl
+else
+	# if it's Darwin
+	CXXFLAGS += -D OSX
+	LDFLAGS  := -stdlib=libstdc++
+endif
 
 # édition de liens
 $(EXEC) : $(objects)
