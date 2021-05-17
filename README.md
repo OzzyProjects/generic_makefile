@@ -1,6 +1,6 @@
-# A C++ basic generic Makefile (Linux & MAC OS)
+# A C++ basic generic Makefile with multiple sources and headers (Linux & MAC OSX compatible)
 
-Make sure you have lcurl installed
+Make sure you have lcurl installed (for linux user)
 
 sudo apt-get install libcurl4-openssl-dev
 
