@@ -1,12 +1,8 @@
-# ARMANGAU Etienne makefile cpp
+# All credits to ARMANGAU Etienne
 
-# Make sure you have lcurl installed
-# if not sudo apt-get install libcurl4-openssl-dev
-
-# To generate the exec file, just do sudo make on your prompt
+# sudo make
 
 # VARIABLES TO MODIFY
-
 # sources folder (*.cpp)
 SRC := sources
 # headers folder (*.h)
@@ -16,24 +12,22 @@ MAIN := main.cpp
 # name of the generated executable
 EXEC := prog
 
-# DO NOT TOUCH
-# liste des fichiers sources y compris le main.cpp qui peut être dans les sources ou dans
-# le répertoire courant du projet
+# the main file can be alone or within the sources folder
 ifneq ("$(wildcard $(MAIN))","")
 	sources := $(MAIN) $(wildcard $(SRC)/*.cpp)
 else
 	sources := $(wildcard $(SRC)/*.cpp)
 endif
 
-# liste des fichiers objets
+# objects files list
 objects := $(sources:.cpp=.o)
-# liste des fichier de dépendance
+# dependacies files list
 deps    := $(objects:.o=.d)
-# choix du compilateur
+# compilator's choice
 CXX := g++
 CPPFLAGS := -I $(INC) -MMD -MP
-# options du compilateur
-CXXFLAGS := -std=c++17 -Wall -pedantic
+# compilator's options (you may add some options here)
+CXXFLAGS := -std=c++17 -g -Wall -pedantic
 
 # OS name
 UNAME := $(shell uname -s)
@@ -47,20 +41,20 @@ else
 	LDFLAGS  := -stdlib=libstdc++
 endif
 
-# édition de liens
+# linking
 $(EXEC) : $(objects)
 	$(CXX) $(LDFLAGS) $^ $(LDLIBS) -o $@
 	$(RM) $(objects) $(deps)
 	 @echo "Compilation done !"
 
-# compilation des fichiers sources
+# compilation from source files
 $(SRC)/%.o: $(SRC)/%.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $^ -o $@
 
-# routine pour supprimer l’exécutable
+# subroutine to remove exec
 .PHONY: clean
 clean:
 	$(RM) $(EXEC)
 
-# on prend en compte les dépendances entre les fichiers
+# dependancies between files
 -include $(deps)
